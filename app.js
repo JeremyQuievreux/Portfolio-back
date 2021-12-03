@@ -4,6 +4,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
 
+require('dotenv').config()
+
 require("./db_connect");
 
 var messageRouter = require('./routes/message');
@@ -15,6 +17,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use('/', messageRouter);
+app.use('/messages', messageRouter);
 
 module.exports = app;
