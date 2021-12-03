@@ -23,7 +23,7 @@ router.post('/send', function(req, res, next) {
 
 router.post('/all', function(req, res, next) {
   let {password} = req.body;
-  if (password === process.env.PASSWORD_ADMIN) {
+  if (Number(password) === Number(process.env.PASSWORD_ADMIN)) {
     MessagesModel.find()
     .then((messages) => {
       res.send({error:false, data: messages, message: "password ok / envoie des messages"})
