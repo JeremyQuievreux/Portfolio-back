@@ -21,4 +21,18 @@ router.post('/send', function(req, res, next) {
   })
 });
 
+router.post('/all', function(req, res, next) {
+  let {password} = req.body;
+  if (password === process.env.PASSWORD_ADMIN) {
+    MessagesModel.find()
+    .then((messages) => {
+      res.send({error:false, data: messages, message: "password ok / envoie des messages"})
+    })
+    console.log("!!! GOOD PASSWORD !!!")
+  } else {
+    console.log("!!! WRONG PASSWORD !!!");
+    res.send({error: true, message: "mauvais mot de passe"})
+  }
+})
+
 module.exports = router;
